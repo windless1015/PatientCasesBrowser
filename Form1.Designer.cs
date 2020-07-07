@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.textBox_number = new System.Windows.Forms.TextBox();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.main_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.additional_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,6 +37,8 @@
             this.entry_option = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.extra_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.extra_code_surgery_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBox_number = new System.Windows.Forms.TextBox();
+            this.btn_buildSQL = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,14 +63,6 @@
             this.dataGridView1.RowTemplate.Height = 27;
             this.dataGridView1.Size = new System.Drawing.Size(893, 287);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // textBox_number
-            // 
-            this.textBox_number.Location = new System.Drawing.Point(12, 58);
-            this.textBox_number.Name = "textBox_number";
-            this.textBox_number.Size = new System.Drawing.Size(141, 25);
-            this.textBox_number.TabIndex = 1;
-            this.textBox_number.TextChanged += new System.EventHandler(this.textBox_number_TextChanged);
             // 
             // id
             // 
@@ -135,11 +128,30 @@
             this.extra_code_surgery_name.ReadOnly = true;
             this.extra_code_surgery_name.Width = 125;
             // 
+            // textBox_number
+            // 
+            this.textBox_number.Location = new System.Drawing.Point(12, 58);
+            this.textBox_number.Name = "textBox_number";
+            this.textBox_number.Size = new System.Drawing.Size(141, 25);
+            this.textBox_number.TabIndex = 1;
+            this.textBox_number.TextChanged += new System.EventHandler(this.textBox_number_TextChanged);
+            // 
+            // btn_buildSQL
+            // 
+            this.btn_buildSQL.Location = new System.Drawing.Point(13, 13);
+            this.btn_buildSQL.Name = "btn_buildSQL";
+            this.btn_buildSQL.Size = new System.Drawing.Size(140, 23);
+            this.btn_buildSQL.TabIndex = 2;
+            this.btn_buildSQL.Text = "button1";
+            this.btn_buildSQL.UseVisualStyleBackColor = true;
+            this.btn_buildSQL.Click += new System.EventHandler(this.btn_buildSQL_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1247, 582);
+            this.Controls.Add(this.btn_buildSQL);
             this.Controls.Add(this.textBox_number);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Form1";
@@ -163,6 +175,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn entry_option;
         private System.Windows.Forms.DataGridViewTextBoxColumn extra_code;
         private System.Windows.Forms.DataGridViewTextBoxColumn extra_code_surgery_name;
+        private System.Windows.Forms.Button btn_buildSQL;
     }
 }
 
