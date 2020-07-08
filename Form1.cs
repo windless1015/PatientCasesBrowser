@@ -57,7 +57,7 @@ namespace PatientCasesBrowser
                 {
                     object main = row.Cell(1);
                     object addi = row.Cell(2);
-                    string name = row.Cell(3).ToString();
+                    string name = row.Cell(3).Value;
                     InsertOneItem(ref count, ref main, ref addi, ref name, ref type, ref entry);
                 }
                 count++;
@@ -76,13 +76,14 @@ namespace PatientCasesBrowser
             string main_code = "";
             string addi_code = "";
             if (mainCode != null)
-                main_code = mainCode.ToString();
+                main_code = ((Cell)mainCode).Value;
             if (additionalCode != null)
-                addi_code = additionalCode.ToString();
-            string insertSQL = "insert into surgery_db(id, main_code, additional_code, surgery_name) " +
-                "values(" + id.ToString() + ", '" + main_code  +"','" + addi_code +"','" + surgeryName +"')";
+                addi_code = ((Cell)additionalCode).Value;
+            string insertSQL = "INSERT INTO surgery_db (id, main_code, additional_code, surgery_name) " +
+                "VALUES (" + id.ToString() + ", '" + main_code  +"','" + addi_code +"','" + surgeryName +"')";
 
-            SqliteHelper.ExecuteNonQuery(insertSQL);
+            int a = SqliteHelper.ExecuteNonQuery(insertSQL);
+            int b = 1;
         }
     }
 }
