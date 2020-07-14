@@ -11,11 +11,11 @@ namespace PatientCasesBrowser
 {
     class SqliteHelper
     {
-        static string dbName = "surgery_db.sql";
+        static string dbName = "surgery_db.db";
 
         public static bool JudgeDBIsExist()
         {
-            string dbPath = System.IO.Directory.GetCurrentDirectory() + @"\Data\surgery_db.sql";
+            string dbPath = System.IO.Directory.GetCurrentDirectory() + @"\Data\surgery_db.db";
             if (!File.Exists(dbPath))
             {
                
@@ -30,18 +30,25 @@ namespace PatientCasesBrowser
         /// 创建数据库文件
         /// </summary>
         /// <param name="fileName">文件名</param>
-        public static void CreateDBFile(string fileName)
+        public static void CreateDBFile()
         {
-            string path = Environment.CurrentDirectory + @"\Data\";
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
-            string databaseFileName = path + fileName;
-            if (!File.Exists(databaseFileName))
-            {
-                SQLiteConnection.CreateFile(databaseFileName);
-            }
+            string dbPath = Environment.CurrentDirectory + @"\Data\surgery_db.db";
+            SQLiteConnection conn = new SQLiteConnection(@"Data Source =" + dbPath);//创建数据库实例，指定文件位置
+            conn.Open();//打开数据库，若文件不存在会自动创建 
+            SQLiteCommand cmd = new SQLiteCommand(conn);//实例化SQL命令 
+            string createSqlString = @"CREATE TABLE IF NOT EXISTS surgery_db 
+                (id INTEGER NOT NULL PRIMARY KEY,
+                main_code varchar(255) DEFAULT NULL,
+                additional_code varchar(255) DEFAULT NULL,
+                 surgery_name varchar(255) DEFAULT NULL,
+                 surgical_type varchar(255) DEFAULT NULL,
+                 entry_option varchar(255) DEFAULT NULL,
+                 extra_code varchar(255) DEFAULT NULL,
+                 extra_code_surgery_name varchar(255) DEFAULT NULL
+                )";
+            cmd.CommandText = createSqlString;
+            int res = cmd.ExecuteNonQuery();  //-1表示没有生效,即数据库中已经有这个数据表了,不需要重新创建
+            int a = 1;
         }
         /// <summary>
         /// 删除数据库
